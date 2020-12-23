@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/godsfavours/Landview/issues"
   },
-  "homepage": "https://github.com/godsfavours/Landview#readme"
+  "homepage": "https://github.com/godsfavours/Landview#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8",
+    "path": "^0.12.7"
+  }
 }
