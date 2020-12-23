@@ -1,0 +1,19 @@
+{
+  "name": "landview",
+  "version": "1.0.0",
+  "description": "Yelp-inspired app for reviewing landmarks.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godsfavours/Landview.git"
+  },
+  "author": "Godsfavour Simon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/godsfavours/Landview/issues"
+  },
+  "homepage": "https://github.com/godsfavours/Landview#readme"
+}
