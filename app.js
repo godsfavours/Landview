@@ -28,12 +28,13 @@ app.get('/', (req, res) => {
   res.render('home');
 })
 
-app.get('/createlandmark', async (req, res) => {
-  const landmark =
-    new Landmark({
-      title: "Dakota Waterfall",
-      description: "Beautiful location", location: "Minnesota"
-    });
-  await landmark.save();
-  res.send(landmark);
+app.get('/landmarks', async (req, res) => {
+  const landmarks = await Landmark.find({});
+  res.render('landmarks/all_landmarks', { landmarks })
+});
+
+app.get('/landmarks/:id', async (req, res) => {
+  const { id } = req.params;
+  const landmark = await Landmark.findById(id);
+  res.render('landmarks/landmark', { landmark })
 });
