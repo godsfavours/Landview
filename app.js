@@ -60,4 +60,9 @@ app.get('/landmarks/:id/edit', async (req, res) => {
 app.put('/landmarks/:id', async (req, res) => {
   await Landmark.findByIdAndUpdate(req.params.id, { ...req.body.landmark });
   res.redirect(`/landmarks/${req.params.id}`);
-})
+});
+
+app.delete('/landmarks/:id', async (req, res) => {
+  await Landmark.findByIdAndDelete(req.params.id);
+  res.redirect('/landmarks');
+});
