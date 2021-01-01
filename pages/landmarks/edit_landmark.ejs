@@ -1,23 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Landmark</title>
-</head>
-
-<body>
+<% layout('layouts/boilerplate') %>
+  <h1>Edit Landmark</h1>
   <a href="/landmarks/<%= landmark._id %>">Cancel</a>
-  <form action="/landmarks/<%= landmark._id %>?_method=PUT" method="POST">
-    <label for="name">Enter Name:</label>
-    <input type="text" id="name" name="landmark[name]" value="<%= landmark.name %> ">
-    <br>
-    <label for="location">Enter location:</label>
-    <input type="text" id="location" name="landmark[location]" value="<%= landmark.location %> ">
-    <br>
-    <button>Save</button>
-  </form>
-</body>
 
-</html>
+  <div class="d-flex justify-content-center">
+    <form class="needs-validation w-50" action="/landmarks/<%= landmark._id %>?_method=PUT" method="POST" novalidate>
+      <div class="mb-3">
+        <label for="name" class="form-label">Landmark Name</label>
+        <input type="text" class="form-control" id="name" name="landmark[name]" value="<%= landmark.name %> " required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a name.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label"> Location</label>
+        <input type="text" class="form-control" id="location" name="landmark[location]" value="<%= landmark.location %>"
+          required>
+        <div class=" valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a location.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label"> Description</label>
+        <textarea class="form-control" id="description" rows="3" name="landmark[description]" required>
+          <%= landmark.description %>
+        </textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a description.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Url</label>
+        <input name="landmark[image]" class="form-control" type="text" id="image" value="<%= landmark.image %>">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  </body>
+
+  </html>

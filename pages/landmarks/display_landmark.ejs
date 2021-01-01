@@ -1,27 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+  <div class="d-flex justify-content-center">
+    <div class="card" style="max-width:600px">
+      <img src="<%= landmark.image %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h1 class="card-title">
+          <%= landmark.name %>
+        </h1>
+        <p class="card-text">
+          <%= landmark.description %>
+            <br><br>
+            Submitted by <%= landmark.author.username %>
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <%= landmark.location %>
+        </li>
+      </ul>
+      <% if (currentUser && landmark.author.equals(currentUser._id)) {%>
+        <div class="d-flex card-body">
+          <a class="btn btn-primary m-2" href="/landmarks/<%= landmark._id %>/edit ">Edit</a>
+          <form class="m-2" action="/landmarks/<%= landmark.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+        <% } %>
+    </div>
+  </div>
+  <div class="container mt-5 mb-5" style="max-width:600px">
+    <h2>Reviews</h2>
+    <% for (let review of landmark.reviews) {%>
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= review.user %>: <%=review.rating%>
+          </h5>
+          <p class="card-text">
+            <%= review.text %>
+          </p>
+          <form class="m-2" action="/landmarks/<%= landmark._id %>/reviews/<%= review._id%>?_method=DELETE"
+            method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+  </div>
+  <div class="container accordion mb-5" id="accordionExample" style="max-width:600px">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Leave a Review!
+          </button>
+        </h2>
+      </div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <%= landmark.name %>
-  </title>
-</head>
+      <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <form class="needs-validation" action="/landmarks/<%= landmark._id %>/reviews" method="POST" novalidate>
+            <div class="form-group">
+              <label for="user">User</label>
+              <input type="text" class="form-control" id="user" name="review[user]" required>
+            </div>
+            <div class="form-group">
+              <label for="rating">Rating</label>
+              <select class="form-control" id="rating" name="review[rating]" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group mb-2">
+              <label for="text">Enter Review</label>
+              <textarea class="form-control" id="text" name="review[text]" rows="3" required></textarea>
+            </div>
+            <button class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
 
-<body>
-  <a href="/landmarks">Back</a>
-  <br>
-  <form action="/landmarks/<%= landmark.id %>?_method=DELETE" method="POST">
-    <button>Delete</button>
-  </form>
-  <a href="/landmarks/<%= landmark._id %>/edit ">Edit</a>
-  <h1>
-    <%= landmark.name %>
-  </h1>
-  <p>
-    <%= landmark.location %>
-  </p>
-</body>
+    </div>
+  </div>
 
-</html>
+  </body>
+
+  </html>

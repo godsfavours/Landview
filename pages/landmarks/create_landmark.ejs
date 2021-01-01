@@ -1,23 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+  <h1>Create Landmark</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Landmark</title>
-</head>
+  <div class="d-flex justify-content-center">
+    <form class="needs-validation w-50" action="/landmarks" method="POST" novalidate>
+      <div class="mb-3">
+        <label for="name" class="form-label">Landmark Name</label>
+        <input type="text" class="form-control" id="name" name="landmark[name]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a name.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label"> Location</label>
+        <input type="text" class="form-control" id="location" name="landmark[location]" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a location.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label"> Description</label>
+        <textarea class="form-control" id="description" rows="3" name="landmark[description]" required></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a description.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Url</label>
+        <input name="landmark[image]" class="form-control" type="text" id="image">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
 
-<body>
-  <a href="/landmarks">All Landmarks</a>
-  <form action="/landmarks" method="POST">
-    <label for="name">Enter Name:</label>
-    <input type="text" id="name" name="landmark[name]">
-    <br>
-    <label for="location">Enter location:</label>
-    <input type="text" id="location" name="landmark[location]">
-    <br>
-    <button>Create</button>
-  </form>
-</body>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
-</html>
+  </body>
+
+  </html>
